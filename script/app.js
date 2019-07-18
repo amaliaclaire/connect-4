@@ -49,7 +49,7 @@ const DIRECTIONS = [
       for (let y = 0; y < gameHeight; y++) {
         for (let x = 0; x < gameWidth; x++) {
           for (let direction of DIRECTIONS) {
-            console.log(direction);
+            // console.log(direction);
             if (checkFourColors(color, x, y, direction)) {
               return {
                 x: x,
@@ -69,6 +69,7 @@ const DIRECTIONS = [
     let win = true;
 
 
+    // offset shows how many colors need to equal 4 to "win".
     for (let offset = 0; offset < 4; offset++ ) {
       const checkX = startX + offset * direction.i;
       const checkY = startY + offset * direction.j;
@@ -83,9 +84,10 @@ const DIRECTIONS = [
         break;
       }
     }
+    // console.log('win', win);
+    // win is displayed here 'now render which player has 'won' here maybe with a function
     return win;
   }
-
 
 
 
@@ -99,25 +101,36 @@ const DIRECTIONS = [
     }
   }
 
+  function endGame(winningPlayer) {
+    game_active = false;
+    document.getElementById('game_info').innerHTML = "Winner: " + winningPlayer;
+  }
+
+
   function drop(col) {
       for (row=5; row>=0; row--) {
         if (gameboard[row][col] === null) {
           gameboard[row][col] = active_player;
           drawBoard();
           const winningLine = checkForWin(active_player);
-          console.log(winningLine);
+          // console.log('active', active_player);
+          // THIS IS WHERE YOU START LOOOKING AT THE ACTIVE PLAYER AND WHO WON
+
           if (winningLine) {
             // endGame()
-            // alert(winningLine.toString());
+            // console.log('winningLine', winningLine ); // this demonstrates the direction i need the player
+            // alert(endGame())
+            alert(`player ${active_player} has won`);
+
+            return
           }
+
+          console.log('active_player', active_player);
           active_player = active_player ? 0 : 1;
           setUpTurn();
           return true;
+
+
         }
       }
-  }
-
-  function endGame(winningPlayer) {
-    game_active = false;
-    document.getElementById('game_info').innerHTML = "Winner: " + winningPlayer;
   }
