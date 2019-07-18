@@ -118,7 +118,8 @@ const DIRECTIONS = [
           if (winningLine) {
 
             alert(`player ${active_player} has won`);
-            let button = document.getElementsByClassName("myBtn")
+            $(".myBtn").prop('disabled', true); 
+            // let button = document.getElementsByClassName("myBtn")
             // button.disabled = true;
 
 
