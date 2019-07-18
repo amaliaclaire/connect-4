@@ -1,5 +1,5 @@
 
-var game_active = false; 
+var game_active = false;
   var active_player = 0;
   var gameboard = [];
   var player_color = [];
