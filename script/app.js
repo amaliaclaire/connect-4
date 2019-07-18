@@ -118,9 +118,8 @@ const DIRECTIONS = [
           if (winningLine) {
 
             alert(`player ${active_player} has won`);
-            $(".myBtn").prop('disabled', true); 
-            // let button = document.getElementsByClassName("myBtn")
-            // button.disabled = true;
+            $(".myBtn").prop('disabled', true);
+
 
 
             return
@@ -135,3 +134,8 @@ const DIRECTIONS = [
         }
       }
   }
+
+function restart () {
+  location.reload();
+
+}
