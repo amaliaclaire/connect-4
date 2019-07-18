@@ -91,10 +91,6 @@ const DIRECTIONS = [
 
 
 
-
-
-
-
   function setUpTurn() {
     if (game_active) {
       document.getElementById('game_info').innerHTML = "Current Player: Player " + active_player + " <span class='player"+active_player+"'>(" + player_color[active_player] + ")</span>";
@@ -104,7 +100,10 @@ const DIRECTIONS = [
   function endGame(winningPlayer) {
     game_active = false;
     document.getElementById('game_info').innerHTML = "Winner: " + winningPlayer;
+
   }
+
+
 
 
   function drop(col) {
@@ -117,10 +116,11 @@ const DIRECTIONS = [
           // THIS IS WHERE YOU START LOOOKING AT THE ACTIVE PLAYER AND WHO WON
 
           if (winningLine) {
-            // endGame()
-            // console.log('winningLine', winningLine ); // this demonstrates the direction i need the player
-            // alert(endGame())
+
             alert(`player ${active_player} has won`);
+            let button = document.getElementsByClassName("myBtn")
+            // button.disabled = true;
+
 
             return
           }
