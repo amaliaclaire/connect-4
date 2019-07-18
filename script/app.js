@@ -49,6 +49,7 @@ const DIRECTIONS = [
       for (let y = 0; y < gameHeight; y++) {
         for (let x = 0; x < gameWidth; x++) {
           for (let direction of DIRECTIONS) {
+            console.log(direction);
             if (checkFourColors(color, x, y, direction)) {
               return {
                 x: x,
@@ -90,10 +91,7 @@ const DIRECTIONS = [
 
 
 
-  function endGame(winningPlayer) {
-    game_active = false;
-    document.getElementById('game_info').innerHTML = "Winner: " + winningPlayer;
-  }
+
 
   function setUpTurn() {
     if (game_active) {
@@ -109,11 +107,17 @@ const DIRECTIONS = [
           const winningLine = checkForWin(active_player);
           console.log(winningLine);
           if (winningLine) {
-            alert(winningLine.toString());
+            // endGame()
+            // alert(winningLine.toString());
           }
           active_player = active_player ? 0 : 1;
           setUpTurn();
           return true;
         }
       }
+  }
+
+  function endGame(winningPlayer) {
+    game_active = false;
+    document.getElementById('game_info').innerHTML = "Winner: " + winningPlayer;
   }
