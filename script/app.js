@@ -3,8 +3,19 @@ var game_active = false;
   var active_player = 0;
   var gameboard = [];
   var player_color = [];
+  let gameWidth = 7;
+  let gameHeight = 6;
   player_color[1] = "red";
   player_color[2] = "blue";
+
+
+
+const DIRECTIONS = [
+  {i: 1, j: 0}, //Horizontal
+  {i: 0, j: 1}, //Vertical
+  {i: 1, j: 1}, // Diagonal
+  {i: -1, j: 1} // Other diagonal
+]
 
   function beginGame() {
 
@@ -24,7 +35,6 @@ var game_active = false;
   }
 
   function drawBoard() {
-    checkForWin();
     for (col = 0; col<=6; col++) {
       for (row=0; row<=5; row++) {
 
@@ -33,83 +43,52 @@ var game_active = false;
     }
   }
 
-  function checkForWin() {
-
-
-    leftRightWin()
-    upDownWin()
-    diagonalUp()
-    diagonalDown()
-
-  }
-
-
-  function leftRightWin () {
-    for (i=1; i<=2; i++) {
-      for (col = 0; col <=3; col++) {
-        for (row = 0; row <=5; row++) {
-          if (gameboard[row][col] == i) {
-            if ((gameboard[row][col+1] == i) && (gameboard[row][col+2] == i) && (gameboard[row][col+3] == i)) {
-              endGame(i);
-              return true;
+  function checkForWin(color) {
+      // from each cell in the grid, we check for 4 in a row for each direction aka horizontal, diagonal, vertical
+      // x & y are coordinate axis
+      for (let y = 0; y < gameHeight; y++) {
+        for (let x = 0; x < gameWidth; x++) {
+          for (let direction of DIRECTIONS) {
+            if (checkFourColors(color, x, y, direction)) {
+              return {
+                x: x,
+                y: y,
+                direction: direction
+              }
             }
+            return false;
           }
         }
       }
-    }
   }
 
+  // when you see "i" use direction.i and direction.j
 
-  function upDownWin() {
-    for (i=1; i<=2; i++) {
-      for (col = 0; col <=6; col++) {
-        for (row = 0; row <=2; row++) {
-          if (gameboard[row][col] == i) {
-            if ((gameboard[row+1][col] == i) && (gameboard[row+2][col] == i) && (gameboard[row+3][col] == i)) {
-              endGame(i);
-              return true;
-            }
-          }
-        }
+  function checkFourColors (color, startX, startY, direction) {
+    let win = true;
+
+
+    for (let offset = 0; offset < 4; offset++ ) {
+      const checkX = startX + offset * direction.i;
+      const checkY = startY + offset * direction.j;
+
+      if(checkX < 0 || checkX >= gameWidth || checkY < 0 || checkY >= gameheight ) {
+        win = false;
+        break;
+      }
+
+      if(gameboard[checkY][checkX] != color) {
+        win = false;
+        break;
       }
     }
+    return win;
   }
 
 
-  //check diagnol down
-
-  function diagonalDown() {
-    for (i=1; i<=2; i++) {
-      for (col = 0; col <=3; col++) {
-        for (row = 0; row <=2; row++) {
-          if (gameboard[row][col] == i) {
-            if ((gameboard[row+1][col+1] == i) && (gameboard[row+2][col+2] == i) && (gameboard[row+3][col+3] == i)) {
-              endGame(i);
-              return true;
-            }
-          }
-        }
-      }
-    }
-  }
 
 
-  //check diagnol up
 
-  function diagonalUp() {
-    for (i=1; i<=2; i++) {
-      for (col = 0; col <=3; col++) {
-        for (row = 3; row <=5; row++) {
-          if (gameboard[row][col] == i) {
-            if ((gameboard[row-1][col+1] == i) && (gameboard[row-2][col+2] == i) && (gameboard[row-3][col+3] == i)) {
-              endGame(i);
-              return true;
-            }
-          }
-        }
-      }
-    }
-  }
 
   function endGame(winningPlayer) {
     game_active = false;
@@ -132,7 +111,6 @@ var game_active = false;
           } else {
             active_player = 1;
           }
-
           setUpTurn();
           return true;
         }
