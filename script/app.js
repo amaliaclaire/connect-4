@@ -1,12 +1,11 @@
 
-var game_active = false;
-  var active_player = 0;
-  var gameboard = [];
-  var player_color = [];
-  let gameWidth = 7;
-  let gameHeight = 6;
-  player_color[1] = "red";
-  player_color[2] = "blue";
+let game_active = false;
+let active_player = 0;
+const gameboard = [];
+const player_color = ["red", "blue"];
+const gameWidth = 7;
+const gameHeight = 6;
+
 
 
 
@@ -25,20 +24,21 @@ const DIRECTIONS = [
     for (row=0; row<=5; row++) {
       gameboard[row] = [];
       for (col=0; col<=6; col++) {
-        gameboard[row][col] = 0;
+        gameboard[row][col] = null;
       }
     }
 
     drawBoard();
-    active_player = 1;
+    active_player = 0;
     setUpTurn();
   }
 
   function drawBoard() {
     for (col = 0; col<=6; col++) {
       for (row=0; row<=5; row++) {
-
-        document.getElementById('square_'+row+'_'+col).innerHTML ="<span class='piece player"+gameboard[row][col]+"'> </span>";
+        const occupant = gameboard[row][col];
+        const cls = occupant === null ? 'empty' : `player${occupant}`;
+        document.getElementById(`square_${row}_${col}`).innerHTML = `<span class='piece ${cls}'> </span>`;
       }
     }
   }
@@ -56,10 +56,10 @@ const DIRECTIONS = [
                 direction: direction
               }
             }
-            return false;
           }
         }
       }
+      return null;
   }
 
   // when you see "i" use direction.i and direction.j
@@ -72,7 +72,7 @@ const DIRECTIONS = [
       const checkX = startX + offset * direction.i;
       const checkY = startY + offset * direction.j;
 
-      if(checkX < 0 || checkX >= gameWidth || checkY < 0 || checkY >= gameheight ) {
+      if(checkX < 0 || checkX >= gameWidth || checkY < 0 || checkY >= gameHeight ) {
         win = false;
         break;
       }
@@ -103,14 +103,15 @@ const DIRECTIONS = [
 
   function drop(col) {
       for (row=5; row>=0; row--) {
-        if (gameboard[row][col] == 0) {
+        if (gameboard[row][col] === null) {
           gameboard[row][col] = active_player;
           drawBoard();
-          if (active_player == 1) {
-            active_player = 2;
-          } else {
-            active_player = 1;
+          const winningLine = checkForWin(active_player);
+          console.log(winningLine);
+          if (winningLine) {
+            alert(winningLine.toString());
           }
+          active_player = active_player ? 0 : 1;
           setUpTurn();
           return true;
         }

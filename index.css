@@ -17,18 +17,18 @@
     margin-right: auto;
   }
 
-  /* Player 0 (no player) will have a light-grey background */
-  .player0 {
+  /* Empty (no player) will have a light-grey background */
+  .empty {
     background-color: #DDDDDD; /* hex colors were used, but rgb/rgba could be used as well */
   }
 
-  /* player 1 will have a red background */
-  .player1 {
+  /* player 0 will have a red background */
+  .player0 {
     background-color: #FF0000;
   }
 
-  /* player 2 will have a blue background */
-  .player2 {
+  /* player 1 will have a blue background */
+  .player1 {
     background-color: #0000FF;
   }
 
