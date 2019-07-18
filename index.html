@@ -2,29 +2,55 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Connect 4</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" defer></script>
-   <link rel="icon" href="resources/favicon.png">
-   <link rel="stylesheet" href="index.css">
-   <script defer src="script/app.js"></script>
+    <title>Connect 4 Vanilla Javascript</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="script/app.js">
 
-
+    </script>
   </head>
-  <body>
-    <h3>Connect 4</h3>
-    <div id="connect4"></div>
+  <body onload="beginGame();">
+		<h1>Connect Four</h1>
+		<p>Connect Four is a game where players take turn dropping colored circles in the top of the board, along different rows.  The goal is to make a row
+			of 4 circles in a row - straight or diagnol.</p>
+		<p>This demo does not have a computer partner.</p>
 
-    <div id="boardgame"></div>
-
-     <br><br>
-    </div>
-
-    <button id="begin" onclick="beginConnect">Begin</button>
-    <button id="restart" onclick="restartConnect">Restart</button>
+		<button id="begin_game" onclick="beginGame();">Begin Game</button>
 
 
-  </body>
+		<div id="gameboard">
+			<div id="game_info">
+			</div>
+
+			<table id="game_table">
+				<thead>
+					<tr>
+
+						<td><button onclick="drop(0);">Drop</button></td>
+						<td><button onclick="drop(1);">Drop</button></td>
+						<td><button onclick="drop(2);">Drop</button></td>
+						<td><button onclick="drop(3);">Drop</button></td>
+						<td><button onclick="drop(4);">Drop</button></td>
+						<td><button onclick="drop(5);">Drop</button></td>
+						<td><button onclick="drop(6);">Drop</button></td>
+					</tr>
+				</thead>
+				<script>
+
+				for (var row=0; row<=5; row++) {
+
+					
+					document.writeln("<tr>");
+					for (var col=0; col<=6; col++) {
+						document.writeln("<td id='square_" + row + "_"+ col +"' class='board_square'></td>");
+					}
+					//write the closing table row tag.
+					document.writeln("</tr>");
+				}
+				</script>
+			</table>
+			<!-- game_status is a place for the game to provide status updates. -->
+			<div id="game_status">
+			</div>
+		</div>
+	</body>
 </html>
