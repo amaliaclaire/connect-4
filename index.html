@@ -12,61 +12,65 @@
     </script>
   </head>
   <body onload="beginGame();">
-    <h1>Connect Four</h1>
+    <h1 style="text-align:center">Connect Four</h1>
 
     <div class="container">
       <div class="row">
         <div class="col">
-          1 of 2
+
+          		<div id="gameboard">
+
+
+          			<table id="game_table">
+          				<thead>
+          					<tr>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(0)">Drop</button></td>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(1)">Drop</button></td>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(2)">Drop</button></td>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(3)">Drop</button></td>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(4)">Drop</button></td>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(5)">Drop</button></td>
+          						<td><button type="button" class="btn btn-outline-secondary myBtn" onclick="drop(6)">Drop</button></td>
+          					</tr>
+          				</thead>
+
+                  <!-- 2. the drop function attached to the onclick.  -->
+          				<script>
+
+          				for (var row=0; row<=5; row++) {
+
+          					document.write("<tr>");
+          					for (var col=0; col<=6; col++) {
+          						document.write(`<td id='square_${row}_${col}' class='board_square'></td>`);
+          					}
+          					//3. These loops create the gameboard grid.
+                    // Go to "./script/app.js" for next explanations.
+          					document.write("</tr>");
+          				}
+          				</script>
+          			</table>
+                <div id="game_info">
+          			</div>
+                <button type="button" id="restart" onclick="restart()">Restart Game</button>
+                <!-- 1. restart function attached to the button. The "onClick" triggers a function call to reset the whole game.  -->
+
+
+          			<!-- game_status is a place for the game to provide status updates. -->
+          			<div id="game_status">
+          			</div>
+          		</div>
         </div>
         <div class="col">
-          2 of 2
+          	<p>Do you go up, to the side, or diagonally? Start in the middle or at the edge? It's your choice in Connect 4 Game. Stack the 4 discs vertically, line them up side to side, or go on the diagonal. As long as you get 4-in-a-row, you win. Stay one step ahead of your opponent and block their attempts to get to 4-in-a-row first. Play all 3 Connect 4 games, and crush the competition!</p>
         </div>
       </div>
     </div>
-		<p>Do you go up, to the side, or diagonally? Start in the middle or at the edge? It's your choice in Connect 4 Game. Stack the 4 discs vertically, line them up side to side, or go on the diagonal. As long as you get 4-in-a-row, you win. Stay one step ahead of your opponent and block their attempts to get to 4-in-a-row first. Play all 3 Connect 4 games, and crush the competition!</p>
 
-    <button id="restart" onclick="restart()">Restart Game</button>
+
     <!-- 1. restart function attached to the button. The "onClick" triggers a function call to reset the whole game.  -->
 
 
 
 
-		<div id="gameboard">
-			<div id="game_info">
-			</div>
-
-			<table id="game_table">
-				<thead>
-					<tr>
-						<td><button class="myBtn" onclick="drop(0)">Drop</button></td>
-						<td><button class="myBtn" onclick="drop(1)">Drop</button></td>
-						<td><button class="myBtn" onclick="drop(2)">Drop</button></td>
-						<td><button class="myBtn" onclick="drop(3)">Drop</button></td>
-						<td><button class="myBtn" onclick="drop(4)">Drop</button></td>
-						<td><button class="myBtn" onclick="drop(5)">Drop</button></td>
-						<td><button class="myBtn" onclick="drop(6)">Drop</button></td>
-					</tr>
-				</thead>
-
-        <!-- 2. the drop function attached to the onclick.  -->
-				<script>
-
-				for (var row=0; row<=5; row++) {
-
-					document.write("<tr>");
-					for (var col=0; col<=6; col++) {
-						document.write(`<td id='square_${row}_${col}' class='board_square'></td>`);
-					}
-					//3. These loops create the gameboard grid.
-          // Go to "./script/app.js" for next explanations.
-					document.write("</tr>");
-				}
-				</script>
-			</table>
-			<!-- game_status is a place for the game to provide status updates. -->
-			<div id="game_status">
-			</div>
-		</div>
 	</body>
 </html>
