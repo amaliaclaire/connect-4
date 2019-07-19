@@ -5,18 +5,29 @@
     <title>Connect 4 Vanilla Javascript</title>
     <link rel="stylesheet" href="index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <script type="text/javascript" src="script/app.js">
 
     </script>
   </head>
   <body onload="beginGame();">
-		<h1>Connect Four</h1>
-		<p>Connect Four is a game where players take turn dropping colored circles in the top of the board, along different rows.  The goal is to make a row
-			of 4 circles in a row - straight or diagnol.</p>
-		<p>This demo does not have a computer partner.</p>
+    <h1>Connect Four</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          1 of 2
+        </div>
+        <div class="col">
+          2 of 2
+        </div>
+      </div>
+    </div>
+		<p>Do you go up, to the side, or diagonally? Start in the middle or at the edge? It's your choice in Connect 4 Game. Stack the 4 discs vertically, line them up side to side, or go on the diagonal. As long as you get 4-in-a-row, you win. Stay one step ahead of your opponent and block their attempts to get to 4-in-a-row first. Play all 3 Connect 4 games, and crush the competition!</p>
 
     <button id="restart" onclick="restart()">Restart Game</button>
+    <!-- 1. restart function attached to the button. The "onClick" triggers a function call to reset the whole game.  -->
 
 
 
@@ -28,7 +39,6 @@
 			<table id="game_table">
 				<thead>
 					<tr>
-
 						<td><button class="myBtn" onclick="drop(0)">Drop</button></td>
 						<td><button class="myBtn" onclick="drop(1)">Drop</button></td>
 						<td><button class="myBtn" onclick="drop(2)">Drop</button></td>
@@ -38,16 +48,18 @@
 						<td><button class="myBtn" onclick="drop(6)">Drop</button></td>
 					</tr>
 				</thead>
+
+        <!-- 2. the drop function attached to the onclick.  -->
 				<script>
 
 				for (var row=0; row<=5; row++) {
-
 
 					document.write("<tr>");
 					for (var col=0; col<=6; col++) {
 						document.write(`<td id='square_${row}_${col}' class='board_square'></td>`);
 					}
-					//write the closing table row tag.
+					//3. These loops create the gameboard grid.
+          // Go to "./script/app.js" for next explanations.
 					document.write("</tr>");
 				}
 				</script>
