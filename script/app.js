@@ -115,7 +115,7 @@ const DIRECTIONS = [
 
   function setUpTurn() {
     if (game_active) {
-      document.getElementById('game_info').innerHTML = "Current Player: Player " + active_player + " <span class='player"+active_player+"'>(" + player_color[active_player] + ")</span>";
+      document.getElementById('game_info').innerHTML = "Current Player: Player " + " <span class='player"+active_player+"'>(" + active_player + ")</span>";
     }
   }
   // 9. This displays to the page of which player is active.

@@ -25,11 +25,14 @@
   /* player 0 will have a red background */
   .player0 {
     background-color: #FF0000;
+    color: white;
   }
 
   /* player 1 will have a blue background */
   .player1 {
     background-color: #0000FF;
+    color: white;
+
   }
 
   /* set the board square to having a dark-grey border, and to be 36x36 square */
